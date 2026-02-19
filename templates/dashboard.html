@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Dashboard</h3>
+
+<div class="nav-links">
+    <a href="/add_task" class="btn-secondary">Add Task</a>
+    <a href="/logout" class="btn-danger">Logout</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>
+                <span class="status {{ task.status }}">
+                    {{ task.status }}
+                </span>
+            </td>
+            <td>
+                <a href="/complete/{{ task.id }}" class="action-link">Complete</a>
+                <a href="/edit/{{ task.id }}" class="action-link">Edit</a>
+                <a href="/delete/{{ task.id }}" class="action-link delete">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
